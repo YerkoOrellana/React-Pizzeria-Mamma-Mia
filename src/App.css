@@ -1,0 +1,92 @@
+body{
+    margin: 0;
+}
+
+.header{
+    background-image: url('https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center;
+    padding: 140px;
+}
+
+.header h1 {
+    color: white;
+    text-align: center;
+    font-size: 50px;
+}
+
+.header p{
+    color: white;
+    text-align: center;
+    font-size: 30px;
+}
+
+.navbar {
+    width: 100%;
+    background-color: black;
+    overflow: auto;
+}
+
+.navbar a {
+    float: left;
+    text-align: center;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.carrito {
+    float: right;
+}
+
+.navbar a:hover {
+    background-color: #000;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 30px;
+    padding-bottom: 40px;
+    padding-top: 40px;
+}
+
+.card {
+    border: 1px solid #ddd; 
+    padding: 20px;
+    background-color: #f9f9f9;
+    text-align: center; 
+    width: 300px; 
+    border-radius: 5px;
+}
+
+.imgpizza {
+    width: 300px; 
+    height: 250px;
+    border-radius: 5px; 
+    object-fit: cover; 
+}
+
+.card h1 {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.card button{
+    margin: 5px;
+}
+
+.footer {
+    width: 100%;
+    background-color: black;
+    overflow: auto;
+    color: white;
+    text-align: center;
+}
