@@ -1,9 +1,10 @@
 import './App.css';
 import Navbar from './assets/componentes/Navbar';
-import Home from './assets/componentes/Home';
+// import Home from './assets/componentes/Home';
+import Cart from './assets/componentes/Cart';
 import Footer from './assets/componentes/Footer';
-import Register from './assets/componentes/Register';
-import Login from './assets/componentes/Login';
+// import Register from './assets/componentes/Register';
+// import Login from './assets/componentes/Login';
 
 function App() {
 
@@ -11,9 +12,10 @@ function App() {
     
       <div className="App">
         <Navbar/>
-        <Register/>
-        {/* <Login/> */}
-        {/* <Home/> */}
+        {/* <Register/>
+        <Login/>
+        <Home/> */}
+        <Cart/>
         <Footer/>
       </div>
     

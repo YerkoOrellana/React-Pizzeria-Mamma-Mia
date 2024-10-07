@@ -1,18 +1,31 @@
 import React from "react";
 
-function CardPizza ({img, name, ingredients, price}){
-    return(
-        <div className="card">
-            <img className="imgpizza" src={img}></img>
-            <h1>Pizza: {name}</h1>
-            <hr></hr>
-            <p>Ingredientes: 🍕 {ingredients.join(", ")}</p>
-            <hr></hr>
-            <p>Precio: ${price.toLocaleString('es-CL')}</p>
-            <button>Ver más 👀</button>
-            <button>Añadir 🛒</button>
-        </div>  
-    )
+function CardPizza({ pizza }) {
+    return (
+            <div className="card">
+                <img 
+                    src={pizza.img} 
+                    alt={pizza.name} 
+                    className="imgpizza" 
+                />
+                <h1 className="nombrePizza">Pizza: {pizza.name}</h1>
+                <hr />
+                <div className="ingredientes">
+                    <p>Ingredientes:</p>
+                    <ul className="list-inline">
+                        {pizza.ingredients.map((ingredient, index) => (
+                            <li key={index} className="list-group-item">🍕 {ingredient}</li>
+                        ))}
+                    </ul>
+                </div>
+                <hr />
+                <p>Precio: ${pizza.price.toLocaleString('es-CL')}</p>
+                <div className="botones">
+                    <button type="button" className="button">Ver más 👀</button>
+                    <button type="button" className="button">Añadir 🛒</button>
+                </div>
+            </div>
+    );
 }
 
 export default CardPizza;

@@ -1,31 +1,57 @@
 import React from "react";
 
 function Navbar() {
-    
     const total = 25000;
     const token = false;
 
     return (
-        <div className="navbar">
-            <a className="active" href="#">Pizzeria Mamma Mia</a>
-            <a href="#">🍕 Home</a>
+        <nav id="navbar" className="navbar">
+            <div className="container">
+                <a className="navbar-brand" href="#">
+                    Pizzería Mamma Mia!
+                </a>
+                <div className="navbar-links">
+                    <ul className="nav-list">
+                        <li className="nav-item">
+                            <a className="nav-link" aria-current="page" href="#">
+                                🍕 Home
+                            </a>
+                        </li>
 
-            {token ? (
-                <>
-                    <a href="#">🔓 Profile</a>
-                    <a href="#">🔒 Logout</a>
-                </>
-            ) : (
-                <>
-                    <a href="#">🔐 Login</a>
-                    <a href="#">🔐 Register</a>
-                </>
-            )}
-
-            <div className="carrito">
-                <a href="#about">🛒 Total: ${total.toLocaleString('es-CL')}</a>
+                        {token ? (
+                            <>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="#">
+                                        🔓 Profile
+                                    </a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="#">
+                                        🔒 Logout
+                                    </a>
+                                </li>
+                            </>
+                        ) : (
+                            <>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="#">
+                                        🔐 Login
+                                    </a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="#">
+                                        🔐 Register
+                                    </a>
+                                </li>
+                            </>
+                        )}
+                    </ul>
+                </div>
+                <span className="navbar-text">
+                    🛒 Total: ${total.toLocaleString('es-CL')}
+                </span>
             </div>
-        </div>
+        </nav>
     );
 }
 
