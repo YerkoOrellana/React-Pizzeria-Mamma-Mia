@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 
 function Navbar() {
     const total = 25000;
@@ -13,9 +14,14 @@ function Navbar() {
                 <div className="navbar-links">
                     <ul className="nav-list">
                         <li className="nav-item">
-                            <a className="nav-link" aria-current="page" href="#">
+                            <Link className="nav-link" aria-current="page" to="/">
                                 🍕 Home
-                            </a>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" aria-current="page" to="/profile">
+                                🙋‍♂️ Profile
+                            </Link>
                         </li>
 
                         {token ? (
@@ -34,22 +40,22 @@ function Navbar() {
                         ) : (
                             <>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">
+                                    <Link className="nav-link" to="/login">
                                         🔐 Login
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">
+                                    <Link className="nav-link" to="/register">
                                         🔐 Register
-                                    </a>
+                                    </Link>
                                 </li>
                             </>
                         )}
                     </ul>
                 </div>
-                <span className="navbar-text">
+                <Link className="navbar-text" to='/cart' style={{textDecoration: "none"}} >
                     🛒 Total: ${total.toLocaleString('es-CL')}
-                </span>
+                </Link>
             </div>
         </nav>
     );
