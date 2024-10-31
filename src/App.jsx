@@ -9,11 +9,15 @@ import NotFound from './assets/Pages/NotFound';
 import Pizza from './assets/Pages/Pizza';
 import Profile from './assets/Pages/Profile';
 import Register from './assets/Pages/Register';
+import { CartProvider } from './assets/Context/CartContext';
+import { useState } from 'react';
 
 const App = () => {
+  const [token, setToken] = useState(false);
   return (
       <div className='App'>
-        <Navbar />
+        <CartProvider>
+        <Navbar token={token}/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
@@ -24,6 +28,7 @@ const App = () => {
           <Route path="/*" element={<NotFound />} />
         </Routes>
         <Footer />
+        </CartProvider>
       </div>
   );
 }

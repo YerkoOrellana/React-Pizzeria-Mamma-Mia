@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Header from '../componentes/Header';
 import CardPizza from '../componentes/CardPizza';
+import { CartContext } from '../Context/CartContext';
 
 function Home() {
     
         const [pizza, setPizza] = useState([]);
+        const { addToCart } = useContext(CartContext);
     
         useEffect(() => {
             const fetchPizza = async () => {
@@ -23,7 +25,7 @@ function Home() {
             <Header />
             <div className="card-container">
                 {pizza.map((pizza) => (
-                    <CardPizza key={pizza.id} pizza={pizza} />
+                    <CardPizza key={pizza.id} pizza={pizza} addToCart={addToCart}/>
                 ))}
             </div>
         </div>

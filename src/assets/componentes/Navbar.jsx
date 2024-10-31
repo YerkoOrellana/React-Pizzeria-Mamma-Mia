@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useContext, useMemo} from "react";
 import { Link } from 'react-router-dom'
+import { CartContext } from '../Context/CartContext';
 
-function Navbar() {
-    const total = 25000;
-    const token = false;
+const Navbar = ({token}) => {
+    const { calculateTotal } = useContext(CartContext);
+
+    const total = calculateTotal();
 
     return (
         <nav id="navbar" className="navbar">

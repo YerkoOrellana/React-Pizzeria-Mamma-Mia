@@ -183,7 +183,7 @@ button:hover {
 
 /* CARRITO */
 
-.cart-container {
+/* .cart-container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
@@ -283,7 +283,7 @@ h2 {
 .total-amount {
     margin-top: 15px;
     text-align: center;
-}
+} */
 
 /* PROFILE */
 
@@ -296,4 +296,76 @@ h2 {
 .notfound {
     text-align: center;
     margin-bottom: 20px;
+}
+
+/* NUEVO CARRITO */
+
+.cart-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 10px;
+}
+
+.cart-item-container {
+    flex: 1 1 30%;
+    max-width: 300px;
+}
+
+.cart-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.cart-item-img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    border-radius: 5px;
+}
+
+h3 {
+    font-size: 1.5em;
+    margin: 0.5em 0;
+}
+
+p {
+    margin: 0.5em 0;
+}
+
+.btn-increase,
+.btn-decrease,
+.btn-remove {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.btn-increase {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-decrease {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-remove {
+    background-color: #ff5555;
+    color: white;
+}
+
+.btn-pay {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }

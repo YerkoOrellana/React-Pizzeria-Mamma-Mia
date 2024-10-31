@@ -1,6 +1,10 @@
 import React from "react";
+import { useContext } from 'react';
+import { CartContext } from '../Context/CartContext';
 
 function CardPizza({ pizza }) {
+    const { addToCart } = useContext(CartContext);
+
     return (
             <div className="card">
                 <img 
@@ -22,7 +26,7 @@ function CardPizza({ pizza }) {
                 <p>Precio: ${pizza.price.toLocaleString('es-CL')}</p>
                 <div className="botones">
                     <button type="button" className="button">Ver más 👀</button>
-                    <button type="button" className="button">Añadir 🛒</button>
+                    <button type="button" className="button" onClick={() => addToCart(pizza)}>Añadir 🛒</button>
                 </div>
             </div>
     );
