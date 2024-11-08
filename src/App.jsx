@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import './App.css';
 import Footer from './assets/componentes/Footer';
 import Navbar from './assets/componentes/Navbar';
@@ -10,14 +10,14 @@ import Pizza from './assets/Pages/Pizza';
 import Profile from './assets/Pages/Profile';
 import Register from './assets/Pages/Register';
 import { CartProvider } from './assets/Context/CartContext';
-import { useState } from 'react';
+import { UserProvider, useUser } from './assets/Context/UserContext';
 
 const App = () => {
-  const [token, setToken] = useState(false);
   return (
       <div className='App'>
+        <UserProvider>
         <CartProvider>
-        <Navbar token={token}/>
+        <Navbar/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
@@ -29,8 +29,16 @@ const App = () => {
         </Routes>
         <Footer />
         </CartProvider>
+        </UserProvider>
       </div>
   );
+}
+
+function ProtectedRoute({ element, isAuth, redirectPath }) {
+  const { token } = useUser();
+  const isAuthenticated = isAuth ? token : !token;
+  
+  return isAuthenticated ? element : <Navigate to={redirectPath} />;
 }
 
 export default App;

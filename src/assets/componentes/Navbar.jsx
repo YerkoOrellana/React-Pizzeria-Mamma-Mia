@@ -1,9 +1,11 @@
-import React, {useContext, useMemo} from "react";
+import { useContext } from "react";
 import { Link } from 'react-router-dom'
 import { CartContext } from '../Context/CartContext';
+import { UserContext } from '../Context/UserContext';
 
-const Navbar = ({token}) => {
+const Navbar = () => {
     const { calculateTotal } = useContext(CartContext);
+    const { token, logout } = useContext(UserContext);
 
     const total = calculateTotal();
 
@@ -20,23 +22,19 @@ const Navbar = ({token}) => {
                                 🍕 Home
                             </Link>
                         </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" aria-current="page" to="/profile">
-                                🙋‍♂️ Profile
-                            </Link>
-                        </li>
 
                         {token ? (
                             <>
                                 <li className="nav-item">
                                     <a className="nav-link" href="#">
-                                        🔓 Profile
+                                        🦸‍♂️ Profile
                                     </a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">
+                                    <button className="nav-link" onClick={logout}>
                                         🔒 Logout
-                                    </a>
+                                    </button>
+
                                 </li>
                             </>
                         ) : (
@@ -49,6 +47,11 @@ const Navbar = ({token}) => {
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/register">
                                         🔐 Register
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link className="nav-link" to='/profile'>
+                                        🙆‍♂️ Profile
                                     </Link>
                                 </li>
                             </>

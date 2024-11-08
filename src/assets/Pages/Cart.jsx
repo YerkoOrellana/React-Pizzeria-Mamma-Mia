@@ -1,11 +1,13 @@
 import React, { useContext, useMemo } from "react";
 import { CartContext } from '../Context/CartContext';
+import { UserContext } from '../Context/UserContext';
 
 const Cart = () => {
     const { cart, increaseQuantity, decreaseQuantity, removeFromCart } = useContext(CartContext);
+    const { token } = useContext(UserContext);
     const total = useMemo(() => {
-        return cart.reduce((sum, pizza) => sum + pizza.price * pizza.quantity, 0);
-    }, [cart]);
+
+    return cart.reduce((sum, pizza) => sum + pizza.price * pizza.quantity, 0);}, [cart]);
 
     return (
         <div className="cart-container">
