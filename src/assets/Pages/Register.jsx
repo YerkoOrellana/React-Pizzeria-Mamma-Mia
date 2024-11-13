@@ -1,48 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react'; 
+import { UserContext } from '../Context/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
+    const { register } = useContext(UserContext); 
     const [email, setEmail] = useState('');
     const [contraseña, setContraseña] = useState('');
     const [confirmacionContraseña, setConfirmacionContraseña] = useState('');
+    const [error, setError] = useState('');
 
-    const [error, setError] = useState(false);
+    const navigate = useNavigate();
 
-    const validarDatos = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!email.trim() || !contraseña.trim() || !confirmacionContraseña.trim()) {
-            setError(true);
+        if (contraseña !== confirmacionContraseña) {
+            setError('Las contraseñas no coinciden');
             return;
         }
 
-        if (!email.includes('@')) {
-            alert('Por favor, ingresa un email válido.');
-            return;
+        try {
+            await register(email, contraseña);
+            setError('');
+            navigate('/profile');
+        } catch (err) {
+            setError(err.message || 'Error en el registro');
         }
-
-        if (contraseña.length < 6) {
-            alert('Tu contraseña debe tener al menos 6 caracteres');
-            return;
-        }
-
-        if (confirmacionContraseña !== contraseña) {
-            alert('Ambas contraseñas deben ser iguales');
-            return;
-        }
-
-        alert('Registro ingresado de manera exitosa!');
-
-        setError(false);
-        setEmail('');
-        setContraseña('');
-        setConfirmacionContraseña('');
     };
 
     return (
         <div className="logincontainer">
-            <form className="loginform" onSubmit={validarDatos}>
-                <h1>Register</h1>
-
-                {error && <p style={{ color: 'red' }}>Todos los campos son obligatorios</p>}
+            <form className="loginform" onSubmit={handleSubmit}>
+                {error ? <p className="alert">{error}</p> : null}
 
                 <label htmlFor="email">Email</label>
                 <input
@@ -72,7 +60,7 @@ function Register() {
                 />
 
                 <div>
-                    <button type="submit">Register</button>
+                    <button type="submit">Enviar</button>
                 </div>
             </form>
         </div>

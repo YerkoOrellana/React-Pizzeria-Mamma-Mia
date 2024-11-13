@@ -19,13 +19,14 @@ const App = () => {
         <CartProvider>
         <Navbar/>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/pizza/p001" element={<Pizza />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/*" element={<NotFound />} />
+        <Route path="/" element={<Home />} />
+              <Route path="/register" element={<ProtectedRoute isAuth={false} redirectPath="/" element={<Register />} />} />
+              <Route path="/login" element={<ProtectedRoute isAuth={false} redirectPath="/" element={<Login />} />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/pizza/:id" element={<Pizza />} />
+              <Route path="/profile" element={<ProtectedRoute isAuth={true} redirectPath="/login" element={<Profile />} />} />
+              <Route path="/404" element={<NotFound />} />
+              <Route path="*" element={<Navigate to="/404" />} />
         </Routes>
         <Footer />
         </CartProvider>

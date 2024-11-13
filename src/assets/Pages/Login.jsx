@@ -1,41 +1,32 @@
-import React, { useState } from 'react';
+import { useContext, useState } from 'react';
+import { UserContext } from '../Context/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+
+    const { login } = useContext(UserContext);
     const [email, setEmail] = useState('');
     const [contraseña, setContraseña] = useState('');
 
-    const [error, setError] = useState(false);
+    const [error, setError] = useState('');
 
-    const validarDatos = (e) => {
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
-        if (!email.trim() || !contraseña.trim()) {
-            setError(true);
-            return;
-        }
-
-        if (!email.includes('@')) {
-            alert('El campo de email es inválido');
-            return;
-        }
-
-        if (contraseña.length < 6) {
-            alert('La contraseña debe tener al menos 6 caracteres');
-            return;
-        }
-
-        alert('¡Datos ingresados correctamente!');
-
-        setError(false);
-        setEmail('');
-        setContraseña('');
+        try {
+            await login(email, contraseña);
+            setError('');
+            navigate('/profile');
+        } catch (err) {
+            setError(err.message);
+        };
     };
 
     return (
         <div className="logincontainer">
-            <form className="loginform" onSubmit={validarDatos}>
-                <h1>Login</h1>
-                {error && <p style={{ color: 'red' }}>Todos los campos son obligatorios</p>}
+            <form className="loginform" onSubmit={handleSubmit}>
+                {error ? <p style={{ color: 'red' }}>{error}</p> : null}
                 
                 <label htmlFor="email">Email</label>
                 <input 
@@ -56,7 +47,7 @@ const Login = () => {
                 />
                 
                 <div>
-                    <button type="submit">Login</button>
+                    <button type="submit">Enviar</button>
                 </div>
             </form>
         </div>
